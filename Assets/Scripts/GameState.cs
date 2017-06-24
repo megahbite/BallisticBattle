@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameState : MonoBehaviour {
 
     public static GameState instance = null;
-    public float currentPlayerAngle = 0;
+    public float currentPlayerAngle = float.NaN;
 
     private void Awake()
     {
