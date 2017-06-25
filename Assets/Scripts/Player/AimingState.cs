@@ -12,7 +12,12 @@ public class AimingState : PlayerState
     {
         var mousePosition = Input.mousePosition;
 
-        player.SetCurrentAngle(Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg);
+        player.SetCurrentAngle(CalculateAngle(mousePosition));
+    }
+
+    public static float CalculateAngle(Vector3 mousePosition)
+    {
+        return Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
     }
 
     public override void Exit()

@@ -9,7 +9,7 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
     public GameObject turret;
     public GameObject angleText;
 
-    public GameObject bullet;
+    public GameObject bulletPrefab;
 
     private Rigidbody2D turretRigidBody;
 
@@ -54,7 +54,7 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
 
     public void MakeBulletAndApplyForce(Vector2 forceVector)
     {
-        var bulletClone = Instantiate(bullet, turret.transform);
+        var bulletClone = Instantiate(bulletPrefab, turret.transform);
         bulletClone.transform.localPosition = new Vector3(0.7f, -0.18f);
         var bulletBody = bulletClone.GetComponent<Rigidbody2D>();
         bulletBody.AddForce(forceVector, ForceMode2D.Force);
