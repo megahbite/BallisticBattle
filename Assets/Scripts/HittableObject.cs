@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
-public class HittableTrigger : MonoBehaviour {
+public class HittableObject : MonoBehaviour {
 
     public GameObject explosionPrefab;
 

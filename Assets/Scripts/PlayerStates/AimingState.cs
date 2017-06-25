@@ -19,10 +19,4 @@ public class AimingState : PlayerState
     {
         return Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-        GameState.instance.currentPlayerAngle = player.GetCurrentAngle();
-    }
 }

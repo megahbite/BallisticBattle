@@ -1,11 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
 
     public static GameState instance = null;
-    public float currentPlayerAngle = float.NaN;
+    private float currentPlayerAngle = float.NaN;
+    public int playerHealth = 20;
+
+    private GameObject angleText = null;
+
+    public float CurrentPlayerAngle
+    {
+        get { return currentPlayerAngle; }
+
+        set
+        {
+            currentPlayerAngle = value;
+            var text = angleText.GetComponent<Text>();
+            if (text != null)
+                text.text = string.Format("{0:f2}°", value);
+        }
+    }
 
     private void Awake()
     {
@@ -13,5 +28,10 @@ public class GameState : MonoBehaviour {
         else if (instance != this) Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        angleText = GameObject.FindGameObjectWithTag("AngleText");
     }
 }

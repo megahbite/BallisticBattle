@@ -1,13 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using ByTheTale.StateMachine;
-using System;
+﻿using ByTheTale.StateMachine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
 {
     public GameObject turret;
-    public GameObject angleText;
 
     public GameObject bulletPrefab;
 
@@ -16,7 +13,7 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
     public override void Start()
     {
         base.Start();
-        if (turret == null || angleText == null) throw new MissingReferenceException("The turret or angleText variables have not been set with game objects");
+        if (turret == null || bulletPrefab == null) throw new MissingReferenceException("The turret or bulletPrefab variables have not been set with game objects");
         turretRigidBody = turret.GetComponent<Rigidbody2D>();
         SetCurrentAngle(0f);
     }
@@ -75,10 +72,7 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
         if (angle > angleConstraints.max * -1) angle = angleConstraints.max * -1;
 
         turretRigidBody.MoveRotation(angle);
-
-        var text = angleText.GetComponent<Text>();
-        if (text != null)
-            text.text = string.Format("{0:f2}°", angle);
+        GameState.instance.CurrentPlayerAngle = angle;
     }
 
     

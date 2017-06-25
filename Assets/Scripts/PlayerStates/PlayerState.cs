@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using ByTheTale.StateMachine;
+﻿using ByTheTale.StateMachine;
 
 public abstract class PlayerState : State
 {

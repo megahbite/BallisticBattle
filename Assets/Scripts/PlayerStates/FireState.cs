@@ -11,7 +11,7 @@ public class FireState : PlayerState
 
     public Vector2 CalculateFiringVector()
     {
-        var shotAngle = GameState.instance.currentPlayerAngle * Mathf.Deg2Rad;
+        var shotAngle = GameState.instance.CurrentPlayerAngle * Mathf.Deg2Rad;
         var power = 30f;
         var shotVectorX = Mathf.Cos(shotAngle) * power;
         var shotVectorY = Mathf.Sin(shotAngle) * power;
