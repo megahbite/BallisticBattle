@@ -7,6 +7,10 @@ public interface IPlayerStateMachine
 
     void AimingDone();
 
+    void StartPoweringUp();
+
+    void PowerDone();
+
     void FiringDone();
     #endregion
 
@@ -23,4 +27,10 @@ public interface IPlayerStateMachine
     /// </summary>
     /// <param name="angle">The angle to set the turret at, pi/2 being straight up. In degrees.</param>
     void SetCurrentAngle(float angle);
+
+    /// <summary>
+    /// Sets the power of the shot as a fraction of the maximum force.
+    /// </summary>
+    /// <param name="powerFraction">The fraction of the maximum to set the power at. From 0 to 1</param>
+    void SetCurrentPower(float powerFraction);
 }

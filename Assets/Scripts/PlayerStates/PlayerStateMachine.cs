@@ -1,4 +1,5 @@
-﻿using ByTheTale.StateMachine;
+﻿using System;
+using ByTheTale.StateMachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
 
     public GameObject bulletPrefab;
 
+    public float maxPower = 70;
+
     private Rigidbody2D turretRigidBody;
 
     public override void Start()
@@ -16,6 +19,7 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
         if (turret == null || bulletPrefab == null) throw new MissingReferenceException("The turret or bulletPrefab variables have not been set with game objects");
         turretRigidBody = turret.GetComponent<Rigidbody2D>();
         SetCurrentAngle(0f);
+        GameState.instance.HighlightAngle();
     }
 
     public override void AddStates()
@@ -23,6 +27,7 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
         AddState<AimingIdleState>();
         AddState<AimingState>();
         AddState<PowerIdleState>();
+        AddState<PowerState>();
         AddState<FireState>();
         AddState<WaitingState>();
 
@@ -39,12 +44,26 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
     public void AimingDone()
     {
         if (!IsCurrentState<AimingState>()) return;
+        GameState.instance.HighlightPower();
+        ChangeState<PowerIdleState>();
+    }
+
+    public void StartPoweringUp()
+    {
+        if (!IsCurrentState<PowerIdleState>()) return;
+        ChangeState<PowerState>();
+    }
+
+    public void PowerDone()
+    {
+        if (!IsCurrentState<PowerState>()) return;
         ChangeState<FireState>();
     }
 
     public void FiringDone()
     {
         if (!IsCurrentState<FireState>()) return;
+        GameState.instance.HighlightAngle();
         ChangeState<AimingIdleState>();
     }
     #endregion
@@ -75,5 +94,8 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
         GameState.instance.CurrentPlayerAngle = angle;
     }
 
-    
+    public void SetCurrentPower(float powerFraction)
+    {
+        GameState.instance.CurrentPlayerPower = powerFraction * maxPower;
+    }
 }
