@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Attached to anything hittable by a bullet. Spawns an explosion and destroys the bullet.
+/// </summary>
 public class HittableObject : MonoBehaviour {
 
     public GameObject explosionPrefab;

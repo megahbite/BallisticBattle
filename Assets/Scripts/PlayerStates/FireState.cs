@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Player has set their state for this turn and is now firing.
+/// </summary>
 public class FireState : PlayerState
 {
     public override void Enter()

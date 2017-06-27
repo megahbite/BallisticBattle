@@ -1,8 +1,9 @@
-﻿using System;
-using ByTheTale.StateMachine;
+﻿using ByTheTale.StateMachine;
 using UnityEngine;
-using UnityEngine.UI;
 
+/// <summary>
+/// Manages the states for a player's turn.
+/// </summary>
 public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
 {
     public GameObject turret;

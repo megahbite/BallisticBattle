@@ -1,4 +1,7 @@
-﻿public class AIAimingState : AIState
+﻿/// <summary>
+/// AI is aiming. Moves turret to 45 degrees always.
+/// </summary>
+public class AIAimingState : AIState
 {
     private float targetAngle = -45f;
 

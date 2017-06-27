@@ -1,4 +1,7 @@
-﻿public class AIWaitingState : AIState
+﻿/// <summary>
+/// Move the AI's turret back down to the resting position and wait for next turn.
+/// </summary>
+public class AIWaitingState : AIState
 {
     private float targetAngle = 0f;
 

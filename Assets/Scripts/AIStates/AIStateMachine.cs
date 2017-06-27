@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using ByTheTale.StateMachine;
-using System;
+﻿using ByTheTale.StateMachine;
+using UnityEngine;
 
+/// <summary>
+/// Manages the states for the AI's turn (AI used very, very loosely here).
+/// </summary>
 public class AIStateMachine : MachineBehaviour, IAIStateMachine
 {
     public GameObject turret;

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// When either the player or AI is hit by a bullet, damage them.
+/// </summary>
 public class BaseHit : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {

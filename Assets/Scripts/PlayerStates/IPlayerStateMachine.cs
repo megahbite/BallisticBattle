@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// This would make testing state behaviour easier if I could get the Unity testing tools to work.
+/// </summary>
 public interface IPlayerStateMachine
 {
     #region Transitions
@@ -14,6 +17,10 @@ public interface IPlayerStateMachine
     void FiringDone();
     #endregion
 
+    /// <summary>
+    /// Spawn a bullet at the turret and apply the given force to it.
+    /// </summary>
+    /// <param name="forceVector">The force to apply to the spawned bullet.</param>
     void MakeBulletAndApplyForce(Vector2 forceVector);
 
     /// <summary>
@@ -25,7 +32,7 @@ public interface IPlayerStateMachine
     /// <summary>
     /// Sets the angle of the turret in the emplacement
     /// </summary>
-    /// <param name="angle">The angle to set the turret at, pi/2 being straight up. In degrees.</param>
+    /// <param name="angle">The angle to set the turret at, 90 being straight up. In degrees.</param>
     void SetCurrentAngle(float angle);
 
     /// <summary>

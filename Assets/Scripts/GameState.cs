@@ -2,11 +2,21 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Big ol' singleton that keeps tabs on the current state of the player (for display) and health of both actors (for win/lose conditions)
+/// 
+/// Theoretically if there were more levels it would track the players score and current level.
+/// </summary>
 public class GameState : MonoBehaviour {
 
+    /// <summary>
+    /// The single instance.
+    /// </summary>
     public static GameState instance = null;
+
     private float currentPlayerAngle = float.NaN;
     private float currentPlayerPower = float.NaN;
+
     public int playerHealth = 20;
     public int aiHealth = 20;
 
