@@ -64,6 +64,14 @@ public class PlayerStateMachine : MachineBehaviour, IPlayerStateMachine
     {
         if (!IsCurrentState<FireState>()) return;
         GameState.instance.HighlightAngle();
+        ChangeState<WaitingState>();
+        var ai = GameObject.FindGameObjectWithTag("AI");
+        ai.SendMessage("StartAIsTurn");
+    }
+
+    public void StartPlayersTurn()
+    {
+        if (!IsCurrentState<WaitingState>()) return;
         ChangeState<AimingIdleState>();
     }
     #endregion
