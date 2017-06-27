@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
@@ -7,6 +8,7 @@ public class GameState : MonoBehaviour {
     private float currentPlayerAngle = float.NaN;
     private float currentPlayerPower = float.NaN;
     public int playerHealth = 20;
+    public int aiHealth = 20;
 
     private Text angleText = null;
     private Text powerText = null;
@@ -70,5 +72,19 @@ public class GameState : MonoBehaviour {
         var powerTextObject = GameObject.FindGameObjectWithTag("PowerText");
         if (powerTextObject != null)
             powerText = powerTextObject.GetComponent<Text>();
+    }
+
+    private void LateUpdate()
+    {
+        // Did we lose?
+        if (playerHealth <= 0 && SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            SceneManager.LoadScene(1);
+            return; // If somehow both bullets land simutaneously, favour the AI (sorry player)
+        }
+
+        //Did we win?
+        if (aiHealth <= 0 && SceneManager.GetActiveScene().buildIndex != 2)
+            SceneManager.LoadScene(2);
     }
 }
